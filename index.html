@@ -1,0 +1,259 @@
+<!doctype html>
+<!-- HIPERMAXI - Tienda en línea · Archivo: index.html (estructura). Usa styles.css, app.js y qr.jpg en la misma carpeta -->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Hipermaxi - Supermercado en línea</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ===== PANTALLA DE INICIO DE SESIÓN / REGISTRO / RECUPERAR CONTRASEÑA ===== -->
+    <div id="gate">
+      <div class="gb">
+        <div class="logo">Hiper<span>maxi</span></div>
+        <div id="gl">
+          <h2>Bienvenido</h2>
+          <p class="s">Inicia sesión para entrar a la tienda</p>
+          <form id="gf">
+            <label for="lu2">Usuario</label
+            ><input type="text" id="lu2" required autocomplete="username" /><label for="lp2"
+              >Contraseña</label
+            ><input type="password" id="lp2" required autocomplete="current-password" />
+            <div class="er" id="le2"></div>
+            <button class="go" type="submit" style="margin-top: 0">Ingresar a la tienda</button>
+          </form>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              gap: 8px;
+              flex-wrap: wrap;
+              margin-top: 12px;
+              font-size: 14px;
+            "
+          >
+            <a
+              href="#"
+              onclick="
+                gv('gp');
+                return false;
+              "
+              >¿Olvidaste tu contraseña?</a
+            ><a
+              href="#"
+              onclick="
+                gv('gr');
+                return false;
+              "
+              >Crear cuenta</a
+            >
+          </div>
+          <p class="s" style="margin: 16px 0 0">Perfiles de demostración</p>
+          <div class="prof">
+            <button
+              type="button"
+              onclick="
+                $('lu2').value = 'cliente';
+                $('lp2').value = 'cliente123';
+              "
+            >
+              👤 Cliente</button
+            ><button
+              type="button"
+              onclick="
+                $('lu2').value = 'admin';
+                $('lp2').value = 'admin123';
+              "
+            >
+              🛠️ Administrador
+            </button>
+          </div>
+        </div>
+        <div id="gr" hidden>
+          <h2>Crear cuenta</h2>
+          <p class="s">Regístrate como cliente o administrador</p>
+          <form id="rf">
+            <label>Nombre completo</label><input type="text" id="rn" required /><label
+              >Usuario</label
+            ><input
+              type="text"
+              id="ru"
+              required
+              pattern="[A-Za-z0-9._]{3,}"
+              title="Mínimo 3 caracteres: letras, números, punto o guion bajo"
+            /><label>Correo electrónico</label><input type="email" id="rm" required /><label
+              >Tipo de cuenta</label
+            ><select id="rr">
+              <option value="user">👤 Cliente</option>
+              <option value="admin">🛠️ Administrador</option>
+            </select>
+            <div id="rcw" hidden>
+              <label>Código de administrador</label><input type="password" id="rc" />
+            </div>
+            <label>Contraseña (mínimo 6 caracteres)</label
+            ><input type="password" id="rp" required minlength="6" /><label
+              >Repetir contraseña</label
+            ><input type="password" id="rp2" required minlength="6" />
+            <div class="er" id="re"></div>
+            <button class="go" type="submit" style="margin-top: 0">Crear cuenta</button>
+          </form>
+          <p style="margin: 12px 0 0; font-size: 14px">
+            <a
+              href="#"
+              onclick="
+                gv('gl');
+                return false;
+              "
+              >← Volver a iniciar sesión</a
+            >
+          </p>
+        </div>
+        <div id="gp" hidden>
+          <h2>Recuperar contraseña</h2>
+          <p class="s">Ingresa tu usuario y el correo con el que te registraste</p>
+          <form id="pf">
+            <label>Usuario</label><input type="text" id="pu" required /><label
+              >Correo electrónico</label
+            ><input type="email" id="pm" required />
+            <div id="pnw" hidden>
+              <label>Nueva contraseña (mínimo 6 caracteres)</label
+              ><input type="password" id="pn" minlength="6" /><label>Repetir nueva contraseña</label
+              ><input type="password" id="pn2" minlength="6" />
+            </div>
+            <div class="er" id="pe"></div>
+            <button class="go" type="submit" id="pb" style="margin-top: 0">Verificar datos</button>
+          </form>
+          <p style="margin: 12px 0 0; font-size: 14px">
+            <a
+              href="#"
+              onclick="
+                gv('gl');
+                return false;
+              "
+              >← Volver a iniciar sesión</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- ===== BARRA SUPERIOR ===== -->
+    <div class="top">🚚 Envío gratis en compras desde Bs 200 · Pago con QR, tarjeta o efectivo</div>
+    <!-- ===== CABECERA: logo, buscador, usuario y carrito ===== -->
+    <header>
+      <div class="hd">
+        <div class="logo">Hiper<span>maxi</span></div>
+        <div class="search">
+          <input
+            id="q"
+            type="search"
+            placeholder="Buscar productos, marcas o categorías..."
+            aria-label="Buscar"
+          />
+        </div>
+        <button class="cartbtn" id="userBtn" style="background: #fff; color: #0b3d91">
+          👤 Ingresar
+        </button>
+        <button class="cartbtn" id="openCart">🛒 Mi carrito <b id="cnt">0</b></button>
+      </div>
+    </header>
+    <!-- ===== MENÚ DE CATEGORÍAS ===== -->
+    <nav>
+      <div id="menu" class="menu"></div>
+      <div class="cats" id="cats"></div>
+    </nav>
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main>
+      <!-- ===== BANNERS DE OFERTAS ===== -->
+      <section class="hero">
+        <div class="ban b1">
+          <h2>Ofertas de la semana</h2>
+          <p>Hasta 30% de descuento en frutas, carnes y lácteos.</p>
+          <button onclick="setCat('Ofertas')">Ver ofertas</button>
+          <div class="em">🍎</div>
+        </div>
+        <div class="ban b2">
+          <h2>Compra desde casa</h2>
+          <p>Recibe tu pedido en el día o recógelo en tu sucursal.</p>
+          <button onclick="document.getElementById('prods').scrollIntoView()">Comprar ahora</button>
+          <div class="em">🛍️</div>
+        </div>
+      </section>
+      <!-- ===== BENEFICIOS ===== -->
+      <section class="perks">
+        <div class="perk">
+          <i>🚚</i>
+          <div><b>Delivery rápido</b>En menos de 2 horas</div>
+        </div>
+        <div class="perk">
+          <i>🥬</i>
+          <div><b>Frescura garantizada</b>Productos seleccionados</div>
+        </div>
+        <div class="perk">
+          <i>💳</i>
+          <div><b>Pago seguro</b>QR, tarjeta o efectivo</div>
+        </div>
+        <div class="perk">
+          <i>🏬</i>
+          <div><b>Recojo en tienda</b>Sin costo adicional</div>
+        </div>
+      </section>
+      <!-- ===== MÁS VENDIDOS ===== -->
+      <section id="top" class="sec"></section>
+      <!-- ===== ORDENAR, FILTROS Y LISTA DE PRODUCTOS ===== -->
+      <div class="bar" id="prods">
+        <h3 id="ttl">Todos los productos</h3>
+        <button class="chip" onclick="$('flt').hidden = !$('flt').hidden">
+          ⚙️ Filtros avanzados</button
+        ><select id="sort" aria-label="Ordenar">
+          <option value="0">Ordenar: destacados</option>
+          <option value="1">Menor precio</option>
+          <option value="2">Mayor precio</option>
+          <option value="3">Nombre A-Z</option>
+          <option value="4">Más vendidos</option>
+        </select>
+      </div>
+      <div class="flt" id="flt" hidden></div>
+      <div class="grid" id="grid"></div>
+      <!-- ===== ATENCIÓN AL CLIENTE Y PREGUNTAS FRECUENTES ===== -->
+      <section class="sec" id="faq">
+        <h3>❓ Atención al cliente y preguntas frecuentes</h3>
+        <div id="faqb"></div>
+        <h4 style="margin: 16px 0 0">Contáctanos directamente</h4>
+        <div id="soc"></div>
+      </section>
+    </main>
+    <!-- ===== PIE DE PÁGINA ===== -->
+    <footer>
+      <b>Hipermaxi</b> · Tu supermercado de confianza<br />Atención: lunes a domingo, 8:00 a 22:00 ·
+      Demo de tienda en línea<br />
+      <div id="soc2"></div>
+      © 2026 Todos los derechos reservados
+    </footer>
+
+    <a class="wa" id="wab" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+    <div class="ov" id="ov"></div>
+    <!-- ===== CARRITO LATERAL ===== -->
+    <aside class="drawer" id="drawer" aria-label="Carrito">
+      <div class="dh">
+        <h3>🛒 Tu carrito</h3>
+        <button class="x" id="closeCart" aria-label="Cerrar">×</button>
+      </div>
+      <div class="items" id="items"></div>
+      <div class="sum">
+        <div class="row"><span>Subtotal</span><span id="sub"></span></div>
+        <div class="row"><span>Descuento ahorrado</span><span id="sav"></span></div>
+        <div class="row"><span>Envío</span><span id="ship"></span></div>
+        <div class="row t"><span>Total</span><span id="tot"></span></div>
+        <button class="go" id="checkout" disabled>Finalizar compra</button>
+      </div>
+    </aside>
+
+    <!-- ===== VENTANA MODAL (checkout, cuenta y panel admin) ===== -->
+    <div class="modal" id="modal"><div class="box" id="box"></div></div>
+
+    <!-- ===== LÓGICA DE LA TIENDA ===== -->
+    <script src="app.js"></script>
+    <script src="dolibarr.js"></script>
+  </body>
+</html>
